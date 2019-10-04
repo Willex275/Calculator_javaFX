@@ -1,45 +1,64 @@
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public abstract class Calculator_JavaFX extends Application {
+public class Calculator_JavaFX extends Application {
 
+	//
 	Stage stage;
-	HBox hBox;
+	HBox displayBox;
 	Scene scene;
-	
-	Button Noll;
-			
+	Button Button;
+	HBox mainBox;
+	GridPane bTTLayout;
+	TextField inputField;
+	ArrayList<Button> buttons;
+
+	// buttons
+
 	public static void main(String[] args) {
 		launch();
 	}
 
-	
+	public void InBTT() {
+		char[] bTTKeys = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '/', '+', '-', '*' };
+		
+		for (char key : bTTKeys) {
+			String keytext = key + "";
+			Button tempButton = new Button(keytext);
+			tempButton.setId(keytext);
+			tempButton.setOnAction(event -> {
+				inputField.textProperty().set(inputField.textProperty().get() + keytext);
+				buttons.add(tempButton);
 
-	public static final String[][] template = {
+			});
 
-		{ "c", "1", "2", "*" },
-		{ "3", "4", "5", "/" }, 
-		{ "6", "7", "8", "+" }, 
-		{ "9", "0", "=", "-" },
+		}
 
-	};
-	
-	
+	}
 
+	@Override
 	public void start(Stage primaryStage) throws Exception {
-		stage = primaryStage; 
-		
-		
-	}
-	
-	private void CreatButtom() {
-		
-		Noll = new Button("String");
-		
-		
-	}
+		HBox Displaybox = new HBox();
+		buttons = new ArrayList<Button>();
+		mainBox = new HBox();
+		bTTLayout = new GridPane();
+		Button ClearButton = new Button("c");
+		Displaybox.getChildren().add(ClearButton);
+		ClearButton.setOnAction(event -> {
+			displayBox.getChildren().clear();
+			
 
+		});
+
+		Scene scene = new Scene(mainBox, 300, 400);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
 }
