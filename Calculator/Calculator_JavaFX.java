@@ -25,8 +25,15 @@ public class Calculator_JavaFX extends Application {
 	public static void main(String[] args) {
 		launch();
 	}
+	
 
-	public void InBTT() {
+	private void displayButtons() {
+		GridPane.setRowIndex(Button, 1);
+		GridPane.setColumnIndex(Button, 1);
+		
+	}
+
+	public void createButtons() {
 		char[] bTTKeys = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '/', '+', '-', '*' };
 		
 		for (char key : bTTKeys) {
@@ -36,6 +43,7 @@ public class Calculator_JavaFX extends Application {
 			tempButton.setOnAction(event -> {
 				inputField.textProperty().set(inputField.textProperty().get() + keytext);
 				buttons.add(tempButton);
+				
 
 			});
 
@@ -45,12 +53,16 @@ public class Calculator_JavaFX extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		HBox Displaybox = new HBox();
+		HBox displayBox = new HBox();
 		buttons = new ArrayList<Button>();
+		createButtons();
 		mainBox = new HBox();
 		bTTLayout = new GridPane();
+		
+		displayButtons();
+		
 		Button ClearButton = new Button("c");
-		Displaybox.getChildren().add(ClearButton);
+		displayBox.getChildren().add(ClearButton);
 		ClearButton.setOnAction(event -> {
 			displayBox.getChildren().clear();
 			
@@ -59,6 +71,7 @@ public class Calculator_JavaFX extends Application {
 
 		Scene scene = new Scene(mainBox, 300, 400);
 		primaryStage.setScene(scene);
-		primaryStage.show();
+		primaryStage.show();  
 	}
+
 }
