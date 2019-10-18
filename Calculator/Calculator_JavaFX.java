@@ -23,10 +23,13 @@ public class Calculator_JavaFX extends Application {
 
 	// buttons
 
+	// main metoden är där för att programet ska köras och fungera Därav att det
+	// står Launch.
 	public static void main(String[] args) {
 		launch();
 	}
 
+	// metod som gör om Char button till "string".
 	public void createButtons() {
 		char[] bTTKeys = { '1', '2', '3', '-', '4', '5', '6', '/', '7', '8', '9', '+', '0', 'c', '=', '*' };
 
@@ -36,7 +39,8 @@ public class Calculator_JavaFX extends Application {
 			if (Character.isDigit(key)) {
 				btn = new DigitButton(key, inputField);
 			} else {
-				btn = new SpecialButton(key, inputField);// lägger in Abstrakta klassen 
+				btn = new SpecialButton(key, inputField);// Lägger in metoden special Button Där Key är knappparna som
+															// läggs in i input field
 			}
 
 			btn.setMinSize(80, 60);
@@ -59,7 +63,6 @@ public class Calculator_JavaFX extends Application {
 		mainBox.setTop(displayBox);
 		displayBox.setMinSize(50, 80);
 		displayBox.setStyle("-fx-background-color: Gray; -fx-padding: 20; -fx-font-size: 20;");
-
 		displayButtons();
 
 		displayBox.getChildren().add(inputField);
