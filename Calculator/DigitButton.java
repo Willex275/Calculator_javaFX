@@ -3,7 +3,7 @@ import javafx.scene.control.TextField;
 public class DigitButton extends CalculatorButton {
 
 	public DigitButton(char c, TextField tf) {
-		super(c, tf); // En superklass medtod Där man ger Char c och tf ett index. 
+		super(c, tf); //  super definerar DigitButton classen Där man ger Char c och tf ett index. 
 	}
 
 	
@@ -13,6 +13,7 @@ public class DigitButton extends CalculatorButton {
 		this.setOnMouseClicked(event->{
 			getTextField().setText(getTextField().getText()+getButton());// Gör så att Buttons läggs till i texfiled 
 		});
+		
 
 	}
 

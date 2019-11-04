@@ -19,7 +19,7 @@ public class Calculator_JavaFX extends Application {
 	BorderPane mainBox;
 	GridPane bTTLayout;
 	ArrayList<Button> buttons;
-	TextField inputField = new TextField("");
+	static TextField inputField = new TextField("");
 
 	// buttons
 
@@ -39,46 +39,52 @@ public class Calculator_JavaFX extends Application {
 			if (Character.isDigit(key)) {
 				btn = new DigitButton(key, inputField);
 			} else {
-				btn = new SpecialButton(key, inputField);// Lägger in metoden special Button Där Key är knappparna som
+				btn = new SpecialButton(key, inputField);// Lägger in metoden special Button Där Key är dem olika räkneknappparna som
 															// läggs in i input field
 			}
 
-			btn.setMinSize(80, 60);
+			btn.setMinSize(85, 60);
 
 			buttons.add(btn);
 
 		}
 
 	}
-
+	   
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) throws Exception { // Start) När man kör programet 
 		HBox displayBox = new HBox();
-		buttons = new ArrayList<Button>();
-		createButtons();
+		buttons = new ArrayList<Button>(); // lagrar buttons i en lista 
+		createButtons();// skappar knapparna 
 		mainBox = new BorderPane();
 		bTTLayout = new GridPane();
 		mainBox.setStyle("-fx-background-color: Black; -fx-padding: 20; -fx-font-size: 20;");
-		mainBox.setCenter(bTTLayout);
+		mainBox.setCenter(bTTLayout);// lägger Knapparna centralt i behållaren/ stage / scene 
 		mainBox.setTop(displayBox);
-		displayBox.setMinSize(50, 80);
-		displayBox.setStyle("-fx-background-color: Gray; -fx-padding: 20; -fx-font-size: 20;");
+		displayBox.setMinSize(50, 50);// definera storleken (displayBox)   
+		displayBox.setStyle("-fx-background-color: Gray; -fx-padding: 20; -fx-font-size:20;");
 		displayButtons();
+		inputField.setEditable(false); // så att man inte kan edita i textfield behållaren 
 
-		displayBox.getChildren().add(inputField);
+		displayBox.getChildren().add(inputField); // Funktionen till clear knappen som tar bort inputen i textfiled 
 		inputField.setOnAction(event -> {
-			displayBox.getChildren().clear();
+			displayBox.getChildren().clear(); // clear button knappen som 
 
 		});
 
-		scene = new Scene(mainBox, 360, 360);
+		scene = new Scene(mainBox, 370, 360);
 		primaryStage.setScene(scene);
-		primaryStage.show();
+		primaryStage.setResizable(false);// gör så att Behållaren inte går att förstora utan kar en fast storlek  
+		primaryStage.show();// Visar scene när programet körs 
 	}
+	
+	
+	
 
+	// metod: Layout för buttons och hur kolumerna ligger och defineras 
 	private void displayButtons() {
 		int buttonIndex = 0;
-		for (int row = 0; row < 6; row++) {
+		for (int row = 0; row < 6; row++) {// loopar igenom och ger buttons en position 
 			for (int col = 0; col < 4; col++) {
 				bTTLayout.add(buttons.get(buttonIndex), col, row);
 				buttonIndex++;

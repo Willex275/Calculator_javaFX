@@ -1,6 +1,7 @@
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+//abstract klass kan inte instansera Men kan definera metoder som måte föras vidar måste ha en metod som i detta fall tar in old_num old_Calc
 public abstract class CalculatorButton extends Button{
 
 	
@@ -10,7 +11,13 @@ public abstract class CalculatorButton extends Button{
 	private char button; 
 	private TextField textField;
 	
+	
 	public CalculatorButton(char c,TextField tf) {
+		
+		
+			
+			
+	
 		
 		// kallar construktorn När man använder this.XXXXX
 		this.setText(Character.toString(c));// Gör om char till string 
@@ -20,8 +27,8 @@ public abstract class CalculatorButton extends Button{
 		setEvent();
 	}
 	
-	public abstract void setEvent(); 
-	
+	// skappar gettextfield och ger tillbaka textfiled 
+	public abstract void setEvent(); 	
 	public TextField getTextField() {
 		return textField;
 	}
@@ -29,6 +36,9 @@ public abstract class CalculatorButton extends Button{
 	public char getButton() {
 		return button;
 	}
+	
+
+	
 	
 
 	
